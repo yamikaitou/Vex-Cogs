@@ -108,7 +108,7 @@ class PollView(discord.ui.View):
         choice = await self.get_user_voter_vote(
             interaction.guild, interaction.user.id  # type:ignore
         )
-        if choice is None:
+        if choice is None and not self.bot.is_owner(interaction.user):
             await interaction.response.send_message(
                 "You need to vote first to be able to see results.", ephemeral=True
             )
