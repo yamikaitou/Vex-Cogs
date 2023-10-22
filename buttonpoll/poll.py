@@ -221,29 +221,10 @@ class Poll:
                 value="\n".join(f"{k}: {v}" for k, v in sorted_results.items()),
                 inline=False,
             )
-            view = discord.ui.View()
-            view.add_item(
-                discord.ui.Button(
-                    label="Original message", style=ButtonStyle.link, url=poll_msg.jump_url
-                )
-            )
-
-            plot = await self.plot()
-
-            embed.set_image(url="attachment://plot.png")
-            message = await channel.send(embed=embed, file=plot, view=view)
-            view.stop()
-
-            view2 = discord.ui.View()
-            view2.add_item(
-                discord.ui.Button(
-                    label="Poll finished. View results",
-                    style=ButtonStyle.link,
-                    url=message.jump_url,
-                )
-            )
+            message = await channel.send(embed=embed)
+            
             try:
-                await poll_msg.edit(view=view2)
+                await poll_msg.delete()
             except discord.NotFound:
                 log.warning(
                     f"Poll {self.unique_poll_id}'s message was not found in channel "

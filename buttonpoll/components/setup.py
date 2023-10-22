@@ -224,11 +224,11 @@ class SetupYesNoView(discord.ui.View):
         options=[
             SelectOption(
                 label="Send new",
-                description="Send a message when the poll is over. Includes a pie chart.",
+                description="Send a message when the poll is over.",
             ),
             SelectOption(
                 label="Edit old",
-                description="Edit the old message when the poll is over. No pie chart.",
+                description="Edit the old message when the poll is over.",
             ),
         ],
     )
